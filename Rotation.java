@@ -9,24 +9,27 @@ public class Rotation {
         int right = nums.length-1;
         int mid = 0;
 
-        while(left<=right){
-            if(nums[left] <= nums[right]){
+        while(left <=right){
+
+            if(nums[left] < nums[right]){
                 return left;
             }
+
             mid = (left+right)/2;
 
-            int prev = (mid-1)%nums.length;
             int next = (mid+1)%nums.length;
+            int prev = (mid-1)%nums.length;
 
-            if(nums[mid] <= nums[prev] && nums[mid] <= nums[next] ){
+            if(nums[mid] <= nums[prev] && nums[mid] <= nums[next]){
                 return mid;
             }
 
-            else if(nums[mid] <= nums[right]){
-                right = mid-1;
+            if(nums[mid] <= nums[right]){
+                right = mid - 1;
             }
-            else if(nums[mid] >= nums[left]){
-                left = mid +1;
+
+            if(nums[mid] >= nums[left]){
+                left = mid + 1;
             }
         }
         return -1;
